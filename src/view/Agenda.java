@@ -2,8 +2,8 @@ package view;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.dao.UsuarioDAO;
-import model.other.Usuario;
+import dao.UsuarioDAO;
+import model.Usuario;
 
 public final class Agenda extends javax.swing.JFrame {
 

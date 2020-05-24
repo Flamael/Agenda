@@ -1,8 +1,8 @@
 package view;
 
 import javax.swing.JOptionPane;
-import model.dao.UsuarioDAO;
-import model.other.Usuario;
+import dao.UsuarioDAO;
+import model.Usuario;
 
 public class Login extends javax.swing.JFrame {
 

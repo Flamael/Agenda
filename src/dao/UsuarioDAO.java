@@ -1,4 +1,4 @@
-package model.dao;
+package dao;
 
 import connection.ConnectionFactory;
 import java.sql.Connection;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.other.Usuario;
+import model.Usuario;
 
 public class UsuarioDAO {
 
