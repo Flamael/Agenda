@@ -218,6 +218,8 @@ public final class Agenda extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         appear();
         btnEditar.setVisible(false);
+        btnExcluir.setVisible(false);
+        tabelaAgenda.setVisible(false);
         if (tabelaAgenda.getSelectedRow() != -1) {
 
             campoNomeAlterado.setText((String) tabelaAgenda.getValueAt(tabelaAgenda.getSelectedRow(), 1));
@@ -236,6 +238,7 @@ public final class Agenda extends javax.swing.JFrame {
         usuario.setId((int) tabelaAgenda.getValueAt(tabelaAgenda.getSelectedRow(), 0));
         uDAO.update(usuario);
         blind();
+        tabelaAgenda.setVisible(true);
         readTable();
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
