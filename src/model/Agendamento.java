@@ -1,27 +1,27 @@
 package model;
 
 public class Agendamento {
-    
-    private int id_agendamento;
-    private int id_usuario;
+
+    private int idAgendamento;
+    private int idUsuario;
     private String descricao;
-    private String data_agendamento;
-    private String hora_agendamnto;
+    private String dataAgendamento;
+    private String horaAgendamento;
 
-    public int getId_agendamento() {
-        return id_agendamento;
+    public int getIdAgendamento() {
+        return idAgendamento;
     }
 
-    public void setId_agendamento(int id_agendamento) {
-        this.id_agendamento = id_agendamento;
+    public void setIdAgendamento(int idAgendamento) {
+        this.idAgendamento = idAgendamento;
     }
 
-    public int getId_usuario() {
-        return id_usuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getDescricao() {
@@ -32,22 +32,20 @@ public class Agendamento {
         this.descricao = descricao;
     }
 
-    public String getData_agendamento() {
-        return data_agendamento;
+    public String getDataAgendamento() {
+        return dataAgendamento;
     }
 
-    public void setData_agendamento(String data_agendamento) {
-        this.data_agendamento = data_agendamento;
+    public void setDataAgendamento(String dataAgendamento) {
+        this.dataAgendamento = dataAgendamento;
     }
 
-    public String getHora_agendamnto() {
-        return hora_agendamnto;
+    public String getHoraAgendamento() {
+        return horaAgendamento;
     }
 
-    public void setHora_agendamnto(String hora_agendamnto) {
-        this.hora_agendamnto = hora_agendamnto;
+    public void setHoraAgendamento(String horaAgendamento) {
+        this.horaAgendamento = horaAgendamento;
     }
-    
-    
-    
+
 }

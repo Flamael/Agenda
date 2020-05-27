@@ -12,90 +12,90 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Agendamento;
 
-public class AgendamentoDAOImpl implements AgendamentoDAO{
-    
-        @Override
-        public void create(Agendamento agendamento){
-            Connection con = ConnectionFactory.getConnection();
-            PreparedStatement stmt = null;
-            
-            try {
-                stmt = con.prepareStatement("INSERT INTO agendamento (id_usuario, descricao, data_agendamento, hora_agendamento) VALUES (?, ?, ?, ?)");
-                stmt.setInt(1, agendamento.getId_usuario());
-                stmt.setString(2, agendamento.getDescricao());
-                stmt.setString(3, agendamento.getData_agendamento());
-                stmt.setString(4, agendamento.getHora_agendamnto());
-                JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
-            } catch(SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao salvar: " + ex);
-            } finally {
-                ConnectionFactory.closeConnection(con, stmt);
-            }
-            
+public class AgendamentoDAOImpl implements AgendamentoDAO {
+
+    @Override
+    public void create(Agendamento agendamento) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("INSERT INTO agendamento (idUsuario, descricao, dataAgendamento, horaAgendamento) VALUES (?, ?, ?, ?)");
+            stmt.setInt(1, agendamento.getIdUsuario());
+            stmt.setString(2, agendamento.getDescricao());
+            stmt.setString(3, agendamento.getDataAgendamento());
+            stmt.setString(4, agendamento.getHoraAgendamento());
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Agendado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao agendar: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
         }
-        
-        @Override
-        public List<Agendamento> readById(int id_usuario) {
-            Connection con = ConnectionFactory.getConnection();
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-            List<Agendamento> agendamentos = new ArrayList<>();
-            
-            try {
-                stmt = con.prepareStatement("SELECT * FROM agendamento WHERE id_usuario =" + id_usuario);
-                rs = stmt.executeQuery();
-                while(rs.next()) {
-                    Agendamento agendamento = new Agendamento();
-                    agendamento.setId_agendamento(rs.getInt("id_agendamento"));
-                    agendamento.setId_usuario(rs.getInt("id_usuario"));
-                    agendamento.setDescricao(rs.getString("descricao"));
-                    agendamento.setData_agendamento(rs.getString("data_agendamento"));
-                    agendamento.setHora_agendamnto(rs.getString("hora_agendamento"));
-                    agendamentos.add(agendamento);
-                }
-            } catch(SQLException ex) {
-                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                ConnectionFactory.closeConnection(con, stmt, rs);
+    }
+
+    @Override
+    public List<Agendamento> readById(int idUsuario) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Agendamento> agendamentos = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM agendamento WHERE idUsuario =" + idUsuario + " ORDER BY dataAgendamento, horaAgendamento ASC");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Agendamento agendamento = new Agendamento();
+                agendamento.setIdAgendamento(rs.getInt("idAgendamento"));
+                agendamento.setIdUsuario(rs.getInt("idUsuario"));
+                agendamento.setDescricao(rs.getString("descricao"));
+                agendamento.setDataAgendamento(rs.getString("dataAgendamento"));
+                agendamento.setHoraAgendamento(rs.getString("horaAgendamento"));
+                agendamentos.add(agendamento);
             }
-            return agendamentos;
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
         }
-        
-        @Override
-        public void update(Agendamento agendamento) {
-            Connection con = ConnectionFactory.getConnection();
-            PreparedStatement stmt = null;
-            
-            try {
-                stmt = con.prepareStatement("UPDATE agendamento SET descricao = ?, data_agendamento = ?, hora_agendamento = ? WHERE id_agendamento = ? AND id_usuario = ?");
-                stmt.setString(1, agendamento.getDescricao());
-                stmt.setString(2, agendamento.getData_agendamento());
-                stmt.setString(3, agendamento.getHora_agendamnto());
-                stmt.setInt(4, agendamento.getId_agendamento());
-                stmt.setInt(5, agendamento.getId_usuario());
-                JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
-            } catch(SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
-            } finally {
-                ConnectionFactory.closeConnection(con, stmt);
-            }
+        return agendamentos;
+    }
+
+    @Override
+    public void update(Agendamento agendamento) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE agendamento SET descricao = ?, dataAgendamento = ?, horaAgendamento = ? WHERE idAgendamento = ? AND idUsuario = ?");
+            stmt.setString(1, agendamento.getDescricao());
+            stmt.setString(2, agendamento.getDataAgendamento());
+            stmt.setString(3, agendamento.getHoraAgendamento());
+            stmt.setInt(4, agendamento.getIdAgendamento());
+            stmt.setInt(5, agendamento.getIdUsuario());
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
         }
-        
-        @Override
-        public void delete(int id_agendamento) {
-            Connection con = ConnectionFactory.getConnection();
-            PreparedStatement stmt = null;
-            
-            try{
-                stmt = con.prepareStatement("DELETE FROM agendamento WHERE id_agendamento = ?");
-                stmt.setInt(1, id_agendamento);
-                stmt.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
-            } catch(SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao deletar: " + ex);
-            } finally {
-                ConnectionFactory.closeConnection(con, stmt);
-            }
-        } 
-    
+    }
+
+    @Override
+    public void delete(int idAgendamento) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("DELETE FROM agendamento WHERE idAgendamento = ?");
+            stmt.setInt(1, idAgendamento);
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao deletar: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
 }

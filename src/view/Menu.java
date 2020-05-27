@@ -1,18 +1,39 @@
 package view;
 
+import dao.UsuarioDAO;
+import dao.UsuarioDAOImpl;
+import javax.swing.JOptionPane;
 import model.Usuario;
 
-public class Menu extends javax.swing.JFrame {
+public final class Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Menu
-     * @param usuario
-     */
     Usuario dados;
-    
+
     public Menu(Usuario usuario) {
         dados = usuario;
         initComponents();
+        blind();
+    }
+
+    public void blind() {
+        labelNome.setVisible(false);
+        labelEmail.setVisible(false);
+        labelSenha.setVisible(false);
+        campoNomeAlterado.setVisible(false);
+        campoEmailAlterado.setVisible(false);
+        campoSenhaAlterado.setVisible(false);
+        btnAtualizar.setVisible(false);
+    }
+
+    public void appear() {
+        labelNome.setVisible(true);
+        labelEmail.setVisible(true);
+        labelSenha.setVisible(true);
+        campoNomeAlterado.setVisible(true);
+        campoEmailAlterado.setVisible(true);
+        campoSenhaAlterado.setVisible(true);
+        btnAtualizar.setVisible(true);
+        btnAlterar.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -20,6 +41,14 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         btnSair = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
+        labelNome = new javax.swing.JLabel();
+        labelEmail = new javax.swing.JLabel();
+        labelSenha = new javax.swing.JLabel();
+        campoNomeAlterado = new javax.swing.JTextField();
+        campoEmailAlterado = new javax.swing.JTextField();
+        campoSenhaAlterado = new javax.swing.JPasswordField();
+        btnAtualizar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuAgendar = new javax.swing.JMenu();
         menuListar = new javax.swing.JMenu();
@@ -32,6 +61,26 @@ public class Menu extends javax.swing.JFrame {
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
+            }
+        });
+
+        btnAlterar.setText("Alterar Perfil");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+
+        labelNome.setText("Nome:");
+
+        labelEmail.setText("Email:");
+
+        labelSenha.setText("Senha:");
+
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
             }
         });
 
@@ -57,16 +106,49 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(525, Short.MAX_VALUE)
-                .addComponent(btnSair)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnAtualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSair))
+                    .addComponent(btnAlterar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelNome)
+                    .addComponent(labelEmail)
+                    .addComponent(labelSenha))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(campoSenhaAlterado)
+                    .addComponent(campoEmailAlterado)
+                    .addComponent(campoNomeAlterado, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(314, Short.MAX_VALUE)
-                .addComponent(btnSair)
+                .addContainerGap()
+                .addComponent(btnAlterar)
+                .addGap(78, 78, 78)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNome)
+                    .addComponent(campoNomeAlterado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoEmailAlterado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEmail))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoSenhaAlterado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelSenha))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSair)
+                    .addComponent(btnAtualizar))
                 .addContainerGap())
         );
 
@@ -89,15 +171,32 @@ public class Menu extends javax.swing.JFrame {
         new Login().setVisible(true);
     }//GEN-LAST:event_btnSairActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        appear();
+        campoNomeAlterado.setText(dados.getNome());
+        campoEmailAlterado.setText(dados.getEmail());
+        campoSenhaAlterado.setText(dados.getSenha());
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        Usuario usuario = new Usuario();
+        UsuarioDAO uDAO = new UsuarioDAOImpl();
+        if (campoNomeAlterado.getText().equals("") || campoEmailAlterado.getText().equals("") || campoSenhaAlterado.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        } else {
+            usuario.setNome(campoNomeAlterado.getText());
+            usuario.setEmail(campoEmailAlterado.getText());
+            usuario.setSenha(campoSenhaAlterado.getText());
+            usuario.setId(dados.getId());
+            uDAO.update(usuario);
+            dispose();
+            new Login().setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -105,25 +204,25 @@ public class Menu extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnSair;
+    private javax.swing.JTextField campoEmailAlterado;
+    private javax.swing.JTextField campoNomeAlterado;
+    private javax.swing.JPasswordField campoSenhaAlterado;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel labelEmail;
+    private javax.swing.JLabel labelNome;
+    private javax.swing.JLabel labelSenha;
     private javax.swing.JMenu menuAgendar;
     private javax.swing.JMenu menuListar;
     // End of variables declaration//GEN-END:variables

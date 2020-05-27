@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Usuario;
 
-public class UsuarioDAOImpl implements UsuarioDAO{
+public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public void create(Usuario usuario) {
@@ -136,7 +136,6 @@ public class UsuarioDAOImpl implements UsuarioDAO{
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos!");
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
