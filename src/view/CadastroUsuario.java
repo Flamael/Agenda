@@ -2,12 +2,13 @@ package view;
 
 import javax.swing.JOptionPane;
 import dao.UsuarioDAO;
+import dao.UsuarioDAOImpl;
 import model.Usuario;
 
 public class CadastroUsuario extends javax.swing.JFrame {
 
     Usuario usuario = new Usuario();
-    UsuarioDAO uDAO = new UsuarioDAO();
+    UsuarioDAO uDAO = new UsuarioDAOImpl();
 
     public CadastroUsuario() {
         initComponents();

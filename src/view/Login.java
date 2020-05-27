@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import dao.UsuarioDAO;
+import dao.UsuarioDAOImpl;
 import model.Usuario;
 
 public class Login extends javax.swing.JFrame {
@@ -104,7 +105,7 @@ public class Login extends javax.swing.JFrame {
         } else {
             Usuario usuario = new Usuario();
             Usuario dados;
-            UsuarioDAO uDAO = new UsuarioDAO();
+            UsuarioDAO uDAO = new UsuarioDAOImpl();
             usuario.setEmail(campoValidarEmail.getText());
             usuario.setSenha(campoValidarSenha.getText());
             dados = uDAO.validate(usuario);

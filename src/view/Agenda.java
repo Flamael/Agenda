@@ -3,6 +3,7 @@ package view;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import dao.UsuarioDAO;
+import dao.UsuarioDAOImpl;
 import model.Usuario;
 
 public final class Agenda extends javax.swing.JFrame {
@@ -38,7 +39,7 @@ public final class Agenda extends javax.swing.JFrame {
     public void readTable() {
         DefaultTableModel modelo = (DefaultTableModel) tabelaAgenda.getModel();
         modelo.setNumRows(0);
-        UsuarioDAO uDAO = new UsuarioDAO();
+        UsuarioDAO uDAO = new UsuarioDAOImpl();
 
         uDAO.read().forEach((usuario) -> {
             modelo.addRow(new Object[]{
@@ -231,7 +232,7 @@ public final class Agenda extends javax.swing.JFrame {
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         Usuario usuario = new Usuario();
-        UsuarioDAO uDAO = new UsuarioDAO();
+        UsuarioDAO uDAO = new UsuarioDAOImpl();
         usuario.setNome(campoNomeAlterado.getText());
         usuario.setEmail(campoEmailAlterado.getText());
         usuario.setSenha(campoSenhaAlterado.getText());
@@ -244,7 +245,7 @@ public final class Agenda extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         int id;
-        UsuarioDAO uDAO = new UsuarioDAO();
+        UsuarioDAO uDAO = new UsuarioDAOImpl();
         if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir?", "Excluir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             id = (int) tabelaAgenda.getValueAt(tabelaAgenda.getSelectedRow(), 0);
             uDAO.delete(id);
