@@ -8,8 +8,10 @@ import model.Usuario;
 
 public final class Agenda extends javax.swing.JFrame {
 
-    public Agenda(Usuario dados) {
+    Usuario dados;
+    public Agenda(Usuario usuario) {
         initComponents();
+        dados = usuario;
         readTable();
         blind();
     }
@@ -71,8 +73,11 @@ public final class Agenda extends javax.swing.JFrame {
         campoSenhaAlterado = new javax.swing.JPasswordField();
         btnAtualizar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Agenda - Lista");
+        setResizable(false);
 
         tabelaAgenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -138,6 +143,13 @@ public final class Agenda extends javax.swing.JFrame {
             }
         });
 
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,7 +158,7 @@ public final class Agenda extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnAtualizar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
@@ -167,6 +179,8 @@ public final class Agenda extends javax.swing.JFrame {
                             .addGap(324, 324, 324))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnVoltar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEditar)
                             .addGap(37, 37, 37)
                             .addComponent(btnExcluir))))
@@ -196,11 +210,13 @@ public final class Agenda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar)
-                    .addComponent(btnExcluir))
+                    .addComponent(btnExcluir)
+                    .addComponent(btnVoltar))
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabelaAgendaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaAgendaKeyReleased
@@ -254,6 +270,11 @@ public final class Agenda extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        dispose();
+        new Menu(dados).setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -288,6 +309,7 @@ public final class Agenda extends javax.swing.JFrame {
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JTextField campoEmailAlterado;
     private javax.swing.JTextField campoNomeAlterado;
     private javax.swing.JPasswordField campoSenhaAlterado;

@@ -21,29 +21,30 @@ public class Login extends javax.swing.JFrame {
         campoValidarSenha = new javax.swing.JPasswordField();
         btEntrar = new javax.swing.JButton();
         campoValidarEmail = new javax.swing.JTextField();
+        labelCadastrar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Agenda");
+        setResizable(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel2.setText("Bem Vindo!");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Email:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Senha:");
 
-        campoValidarSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoValidarSenhaActionPerformed(evt);
-            }
-        });
-
-        btEntrar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btEntrar.setText("Entrar");
         btEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEntrarActionPerformed(evt);
+            }
+        });
+
+        labelCadastrar.setText("<html><u>Ainda não possui cadastro? Crie já o seu!</u></html>");
+        labelCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelCadastrarMouseClicked(evt);
             }
         });
 
@@ -52,31 +53,36 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(campoValidarEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-                .addGap(148, 148, 148))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btEntrar)
-                .addGap(41, 41, 41))
+                .addContainerGap(114, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btEntrar)
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(campoValidarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoValidarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(149, 149, 149))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(55, 55, 55)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(18, 18, 18)
-                            .addComponent(campoValidarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel4)
                         .addComponent(jLabel2)
                         .addComponent(jLabel3))
-                    .addContainerGap(150, Short.MAX_VALUE)))
+                    .addContainerGap(421, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(269, Short.MAX_VALUE)
+                .addContainerGap(261, Short.MAX_VALUE)
                 .addComponent(campoValidarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(165, 165, 165)
+                .addGap(18, 18, 18)
+                .addComponent(campoValidarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109)
                 .addComponent(btEntrar)
                 .addGap(35, 35, 35))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,18 +92,13 @@ public class Login extends javax.swing.JFrame {
                     .addGap(121, 121, 121)
                     .addComponent(jLabel3)
                     .addGap(31, 31, 31)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4)
-                        .addComponent(campoValidarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(178, Short.MAX_VALUE)))
+                    .addComponent(jLabel4)
+                    .addContainerGap(204, Short.MAX_VALUE)))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(738, 582));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void campoValidarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValidarSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoValidarSenhaActionPerformed
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         if (campoValidarEmail.getText().equals("") || campoValidarSenha.getText().equals("")) {
@@ -111,11 +112,16 @@ public class Login extends javax.swing.JFrame {
             dados = uDAO.validate(usuario);
             if (dados.getId() > 0) {
                 dispose();
-                new Agenda(dados).setVisible(true);
+                new Menu(dados).setVisible(true);
             }
 
         }
     }//GEN-LAST:event_btEntrarActionPerformed
+
+    private void labelCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCadastrarMouseClicked
+        dispose();
+        new CadastroUsuario().setVisible(true);
+    }//GEN-LAST:event_labelCadastrarMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -151,5 +157,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel labelCadastrar;
     // End of variables declaration//GEN-END:variables
 }
