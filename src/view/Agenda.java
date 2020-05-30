@@ -316,6 +316,8 @@ public final class Agenda extends javax.swing.JFrame {
         if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir?", "Excluir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             id = (int) tabelaAgenda.getValueAt(tabelaAgenda.getSelectedRow(), 0);
             aDAO.delete(id);
+            btnEditar.setVisible(false);
+            btnExcluir.setVisible(false);
             readTable();
         }
 
