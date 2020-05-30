@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class ConnectionFactory {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://127.0.0.1/banco";
+    private static final String URL = "jdbc:mysql://127.0.0.1/agenda";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
