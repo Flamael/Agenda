@@ -1,5 +1,5 @@
 # Projeto da Pós Graduação em Engenharia de Software - Agenda
-```Projeto para utilização dos coneceito básicos sobre Orientação a Objeto```
+```Projeto para utilização dos conceitos básicos sobre Orientação a Objeto```
  
 ## Participantes
 
