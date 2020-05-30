@@ -8,12 +8,12 @@ public interface AgendamentoDAO extends GenericDAO<Agendamento>{
     @Override
     public void create(Agendamento agendamento);
 
-    public List<Agendamento> readById(int id_usuario);
+    public List<Agendamento> readById(int idUsuario);
 
     @Override
     public void update(Agendamento agendamento);
 
     @Override
-    public void delete(int id_agendamento);
+    public void delete(int idAgendamento);
 
 }

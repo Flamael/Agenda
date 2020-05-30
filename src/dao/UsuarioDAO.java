@@ -10,13 +10,13 @@ public interface UsuarioDAO extends GenericDAO<Usuario>{
 
     public List<Usuario> read();
 
-    public Usuario search(int id);
+    public Usuario search(int idUsuario);
 
     @Override
     public void update(Usuario usuario);
 
     @Override
-    public void delete(int id);
+    public void delete(int idUsuario);
 
     public Usuario validate(Usuario usuario);
 

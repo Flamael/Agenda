@@ -1,7 +1,5 @@
 package dao;
 
-import java.util.List;
-
 public interface GenericDAO<T> {
     
     public void create(T t);
